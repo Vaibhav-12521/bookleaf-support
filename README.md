@@ -2,8 +2,10 @@
 
 A web app that helps BookLeaf's operations team answer author queries faster and more consistently. Authors check their books and royalties and raise tickets. Admins work a prioritised queue where every ticket is **classified, prioritised and drafted by AI** using the BookLeaf knowledge base, and a human always reviews before anything reaches the author.
 
-> **Live demo:** `<add your deployed URL here>`
-> **API docs (Swagger):** `<live URL>/api/docs`  ·  OpenAPI JSON: `<live URL>/api/openapi.json`
+> **Live demo:** https://bookleaf-support-ds98.onrender.com (use **Try the demo** at the bottom-right for one-click sign-in)
+> **API docs (Swagger):** https://bookleaf-support-ds98.onrender.com/api/docs  ·  OpenAPI JSON: https://bookleaf-support-ds98.onrender.com/api/openapi.json
+>
+> Hosted on Render's free plan: if the site has been idle, the first load can take up to a minute while it wakes up.
 
 ### Test logins
 
