@@ -1,0 +1,28 @@
+{
+  "name": "bookleaf-support",
+  "private": true,
+  "description": "BookLeaf Author Support & Communication Portal",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c blue,green \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "npm run dev -w @bookleaf/api",
+    "dev:web": "npm run dev -w @bookleaf/web",
+    "build": "npm run build -w @bookleaf/web && npm run build -w @bookleaf/api",
+    "start": "npm run start -w @bookleaf/api",
+    "db:migrate": "npm run db:migrate -w @bookleaf/api",
+    "db:deploy": "npm run db:deploy -w @bookleaf/api",
+    "db:seed": "npm run db:seed -w @bookleaf/api",
+    "db:reset": "npm run db:reset -w @bookleaf/api",
+    "test": "npm run test -w @bookleaf/api",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.5"
+  }
+}

@@ -1,0 +1,190 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  AUTHOR
+  ADMIN
+}
+
+enum TicketStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+}
+
+enum Category {
+  ROYALTY_PAYMENTS
+  ISBN_METADATA
+  PRINTING_QUALITY
+  DISTRIBUTION_AVAILABILITY
+  BOOK_STATUS_PRODUCTION
+  GENERAL_INQUIRY
+}
+
+enum Priority {
+  CRITICAL
+  HIGH
+  MEDIUM
+  LOW
+}
+
+enum DecisionSource {
+  AI
+  RULES
+  ADMIN
+}
+
+enum TriageStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
+
+enum MessageType {
+  AUTHOR_MESSAGE
+  ADMIN_REPLY
+  INTERNAL_NOTE
+}
+
+enum AiOperation {
+  TRIAGE
+  DRAFT
+}
+
+model User {
+  id              String          @id @default(uuid())
+  email           String          @unique
+  passwordHash    String
+  name            String
+  role            Role
+  createdAt       DateTime        @default(now())
+  author          Author?
+  assignedTickets Ticket[]        @relation("TicketAssignee")
+  messages        TicketMessage[]
+}
+
+model Author {
+  id         String   @id
+  userId     String   @unique
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  phone      String
+  city       String
+  joinedDate DateTime @db.Date
+  books      Book[]
+  tickets    Ticket[]
+}
+
+model Book {
+  id              String    @id
+  authorId        String
+  author          Author    @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  title           String
+  isbn            String    @unique
+  genre           String
+  publicationDate DateTime? @db.Date
+  status          String
+  mrp             Int?
+  royaltyPerCopy  Int?
+  copiesSold      Int       @default(0)
+  royaltyEarned   Int       @default(0)
+  royaltyPaid     Int       @default(0)
+  royaltyPending  Int       @default(0)
+  lastPayoutDate  DateTime? @db.Date
+  printPartner    String?
+  platforms       String[]
+  tickets         Ticket[]
+
+  @@index([authorId])
+}
+
+model Ticket {
+  id              String          @id @default(uuid())
+  number          Int             @unique @default(autoincrement())
+  authorId        String
+  author          Author          @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  bookId          String?
+  book            Book?           @relation(fields: [bookId], references: [id], onDelete: SetNull)
+  subject         String
+  description     String
+  attachment      Json?
+  status          TicketStatus    @default(OPEN)
+
+  category        Category
+  priority        Priority
+  categorySource  DecisionSource
+  prioritySource  DecisionSource
+
+  triageStatus    TriageStatus    @default(PENDING)
+  aiCategory      Category?
+  aiPriority      Priority?
+  aiConfidence    Float?
+  aiReasoning     String?
+  triageError     String?
+
+  assigneeId      String?
+  assignee        User?           @relation("TicketAssignee", fields: [assigneeId], references: [id], onDelete: SetNull)
+
+  awaitingTeam    Boolean         @default(true)
+  firstResponseAt DateTime?
+  resolvedAt      DateTime?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  messages        TicketMessage[]
+  draft           AiDraft?
+  aiEvents        AiEvent[]
+
+  @@index([status, priority, createdAt])
+  @@index([authorId, createdAt])
+  @@index([assigneeId])
+}
+
+model TicketMessage {
+  id          String      @id @default(uuid())
+  ticketId    String
+  ticket      Ticket      @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  senderId    String
+  sender      User        @relation(fields: [senderId], references: [id])
+  type        MessageType
+  body        String
+  fromAiDraft Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+
+  @@index([ticketId, createdAt])
+}
+
+model AiDraft {
+  id           String   @id @default(uuid())
+  ticketId     String   @unique
+  ticket       Ticket   @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  content      String
+  model        String
+  category     Category
+  messageCount Int
+  createdAt    DateTime @default(now())
+}
+
+model AiEvent {
+  id               String      @id @default(uuid())
+  ticketId         String?
+  ticket           Ticket?     @relation(fields: [ticketId], references: [id], onDelete: SetNull)
+  operation        AiOperation
+  model            String
+  success          Boolean
+  inputTokens      Int         @default(0)
+  outputTokens     Int         @default(0)
+  cacheReadTokens  Int         @default(0)
+  cacheWriteTokens Int         @default(0)
+  latencyMs        Int
+  errorCode        String?
+  createdAt        DateTime    @default(now())
+
+  @@index([createdAt])
+}
