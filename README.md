@@ -72,6 +72,7 @@ Assumptions, trade-offs, limitations and next steps are in **[NOTES.md](NOTES.md
 | Layer | Choice | Why |
 |---|---|---|
 | Frontend | React 18, Vite, TypeScript, Tailwind CSS 4, TanStack Query, React Router | TanStack Query handles caching and loading/error states, and realtime events just invalidate queries. |
+| Design | Editorial theme: Fraunces (headings) + Inter (UI), self-hosted via Fontsource; warm paper-and-ink palette on the BookLeaf navy and green | Self-hosted fonts work under the strict Content-Security-Policy (no third-party font requests). Layout is responsive from 360 px phones to wide monitors: a sidebar from 1024 px, multi-column pages, and generated book covers. |
 | Backend | Node 22, Express 5, TypeScript | Explicit middleware chain (auth, role, validation, handler). Express 5 forwards async errors natively. |
 | Database | PostgreSQL + Prisma 6 | Relational data (author → books → tickets → messages), typed queries, migrations, parameterised SQL. |
 | Validation | Zod 4, **shared** between API and web | One schema drives server validation, form validation, TypeScript types *and* the OpenAPI spec. |

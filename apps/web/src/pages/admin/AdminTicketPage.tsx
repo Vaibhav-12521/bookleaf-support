@@ -38,7 +38,7 @@ export function AdminTicketPage() {
       </Link>
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-slate-900">{ticket.subject}</h1>
+          <h1 className="text-2xl font-semibold text-slate-900 sm:text-3xl">{ticket.subject}</h1>
           <p className="mt-1 text-sm text-slate-500">
             {ticket.reference} · {ticket.author.name} · {ticket.book?.title ?? 'General / Account Level'} · opened {formatDateTime(ticket.createdAt)}
           </p>
@@ -49,12 +49,12 @@ export function AdminTicketPage() {
         </div>
       </div>
 
-      <div className="grid gap-5 lg:grid-cols-3">
-        <div className="space-y-5 lg:col-span-2">
+      <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_22rem] 2xl:grid-cols-[minmax(0,1fr)_26rem]">
+        <div className="min-w-0 space-y-5">
           <Thread ticket={ticket} viewer="ADMIN" />
           <Composer ticket={ticket} />
         </div>
-        <aside className="space-y-5">
+        <aside className="space-y-5 lg:sticky lg:top-24">
           <TriagePanel ticket={ticket} />
           <AuthorPanel ticket={ticket} />
         </aside>

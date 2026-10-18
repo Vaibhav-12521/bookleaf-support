@@ -75,7 +75,7 @@ export function QueuePage() {
 
   return (
     <>
-      <PageHeader title="Ticket queue" subtitle="Sorted by urgency: Critical first, then oldest first." />
+      <PageHeader eyebrow="Operations" title="Ticket queue" subtitle="Sorted by urgency: Critical first, then oldest first." />
 
       {overview.data && !overview.data.aiEnabled && (
         <div className="mb-4">
@@ -160,7 +160,7 @@ function OverviewStrip({ overview, onFilter }: { overview: TicketOverviewDTO; on
           className="rounded-xl border border-slate-200 bg-white p-3 text-left shadow-sm enabled:hover:border-brand-200 disabled:cursor-default"
         >
           <p className="text-xs text-slate-500">{t.label}</p>
-          <p className={clsx('mt-1 text-xl font-semibold', t.tone)}>{t.value}</p>
+          <p className={clsx('mt-1 font-display text-2xl font-semibold tabular-nums', t.tone)}>{t.value}</p>
         </button>
       ))}
       <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm" title="AI calls logged since launch">

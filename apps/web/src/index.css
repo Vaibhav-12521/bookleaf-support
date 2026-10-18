@@ -1,27 +1,57 @@
 @import 'tailwindcss';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/fraunces';
 
 @theme {
-  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-display: 'Fraunces Variable', ui-serif, Georgia, 'Times New Roman', serif;
 
   --color-brand-50: #eef5fa;
   --color-brand-100: #d6e6f2;
   --color-brand-200: #adcde5;
+  --color-brand-300: #7fb0d4;
   --color-brand-500: #2e6f9e;
   --color-brand-600: #22618c;
   --color-brand-700: #1b4f72;
   --color-brand-800: #163f5b;
   --color-brand-900: #102f44;
+  --color-brand-950: #0b2233;
   --color-leaf-100: #e3f5e6;
+  --color-leaf-300: #9fd7aa;
   --color-leaf-500: #3fa155;
   --color-leaf-600: #2f8443;
+  --color-gold-100: #f7ecd6;
+  --color-gold-500: #c08a2d;
+  --color-gold-700: #8a5f17;
+
+  /* Editorial palette: the neutral scale is warm paper and ink rather than cool grey. */
+  --color-slate-50: #faf8f4;
+  --color-slate-100: #f2eee6;
+  --color-slate-200: #e6e0d4;
+  --color-slate-300: #d3cbbb;
+  --color-slate-400: #a39a89;
+  --color-slate-500: #76705f;
+  --color-slate-600: #5b5648;
+  --color-slate-700: #433f35;
+  --color-slate-800: #2c2a24;
+  --color-slate-900: #1b1a16;
+  --color-paper: #f6f3ec;
 }
 
 @layer base {
   html {
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
   body {
-    @apply bg-slate-50 text-slate-800;
+    @apply bg-paper text-slate-800;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    letter-spacing: -0.01em;
   }
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-brand-500;
