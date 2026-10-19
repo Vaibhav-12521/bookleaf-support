@@ -127,7 +127,7 @@ describe.skipIf(!hasTestDb)('AI integration: triage, drafts, graceful degradatio
     const id = await raise(priya, { bookId: 'BK001', subject: 'Royalty', description: 'When will my pending royalty be paid?' });
 
     const draftRequest = api().get(`/api/v1/tickets/${id}/draft`).set(auth(admin)).then((r) => r.body.draft);
-    await new Promise((r) => setTimeout(r, 150)); // the model is now "writing"
+    await new Promise((r) => setTimeout(r, 150));
     const followUp = (await api().post(`/api/v1/tickets/${id}/messages`).set(auth(priya)).send({ body: 'Also, which bank account?' })).body.message;
     const draft = await draftRequest;
 

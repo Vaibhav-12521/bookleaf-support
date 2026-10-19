@@ -80,7 +80,7 @@ function TicketSummaryPanel({ tickets }: { tickets: TicketSummaryDTO[] }) {
           ['New replies', replied],
           ['Resolved', resolved],
         ].map(([label, value]) => (
-          <div key={label} className="rounded-xl bg-slate-50 px-3 py-3 ring-1 ring-slate-100">
+          <div key={label} className="rounded-lg bg-slate-50 px-3 py-3 ring-1 ring-slate-100">
             <dt className="text-xs text-slate-500">{label}</dt>
             <dd className="mt-1 font-display text-2xl font-semibold text-slate-900 tabular-nums">{value}</dd>
           </div>

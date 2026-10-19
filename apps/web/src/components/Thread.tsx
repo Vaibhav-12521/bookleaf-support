@@ -59,7 +59,7 @@ function MessageBubble({ message, viewer }: { message: MessageDTO; viewer: 'AUTH
 function Bubble({ own, name, role, at, children }: { own: boolean; name: string; role: string; at: string; children: ReactNode }) {
   return (
     <div className={clsx('flex', own ? 'justify-end' : 'justify-start')}>
-      <div className={clsx('max-w-[85%] rounded-xl px-4 py-3 text-sm', own ? 'bg-brand-50 ring-1 ring-brand-100' : 'bg-white ring-1 ring-slate-200')}>
+      <div className={clsx('max-w-[85%] rounded-lg px-4 py-3 text-sm', own ? 'bg-brand-50 ring-1 ring-brand-100' : 'bg-white ring-1 ring-slate-200')}>
         <p className="mb-1.5 text-xs text-slate-500">
           <span className="font-medium text-slate-700">{name}</span> · {role} · {formatDateTime(at)}
         </p>

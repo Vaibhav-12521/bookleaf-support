@@ -76,7 +76,5 @@ export const ATTACHMENT_RULES = {
   mimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'application/pdf'],
 } as const;
 
-// AI drafts and templates mark facts the agent must supply as [bracketed text].
-// A reply that still contains one is incomplete and must not reach the author.
 const DRAFT_PLACEHOLDER = /\[[^\]\n]{3,}\]/g;
 export const findDraftPlaceholders = (text: string): string[] => text.match(DRAFT_PLACEHOLDER) ?? [];

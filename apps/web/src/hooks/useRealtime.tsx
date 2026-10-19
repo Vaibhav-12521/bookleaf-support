@@ -9,9 +9,6 @@ const Ctx = createContext<LiveStatus>('connecting');
 
 const EVENT_TYPES: RealtimeEvent['type'][] = ['ticket.created', 'ticket.updated', 'message.created'];
 
-// The stream is authenticated once, when it opens, so it is keyed to the signed-in
-// user: switching accounts must reconnect, or the new user would keep receiving
-// the previous user's events.
 export function RealtimeProvider({ userId, children }: { userId: string | null; children: ReactNode }) {
   const qc = useQueryClient();
   const [status, setStatus] = useState<LiveStatus>('connecting');

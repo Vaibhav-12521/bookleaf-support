@@ -1,15 +1,13 @@
 import clsx from 'clsx';
 import { Fragment } from 'react';
 
-// Decorative, generated book jacket. Colour is derived from the book id so every
-// book keeps the same cover between visits; the real cover is not in the dataset.
 const JACKETS = [
-  'from-[#1b4f72] to-[#0b2233]',
-  'from-[#2f6b4f] to-[#173a2a]',
-  'from-[#7a3b47] to-[#3d1c23]',
-  'from-[#a5622b] to-[#5a3214]',
-  'from-[#2c6a76] to-[#133238]',
-  'from-[#4a4a68] to-[#23233a]',
+  'from-[#1b4f72] to-[#0d263a]',
+  'from-[#2e86c1] to-[#1b4f72]',
+  'from-[#117864] to-[#0b4f42]',
+  'from-[#5d6d7e] to-[#2e4053]',
+  'from-[#21618c] to-[#123349]',
+  'from-[#7d6608] to-[#4a3c05]',
 ];
 
 function jacketFor(id: string) {
@@ -18,7 +16,6 @@ function jacketFor(id: string) {
   return JACKETS[hash % JACKETS.length];
 }
 
-/** Small jacket for list rows: same colour as the book's full cover, no text. */
 export function MiniCover({ id }: { id: string | null }) {
   return (
     <span
@@ -34,7 +31,6 @@ export function MiniCover({ id }: { id: string | null }) {
 }
 
 export function BookCover({ id, title, genre, className }: { id: string; title: string; genre: string; className?: string }) {
-  // Allow line breaks after "+", "/" and "&" so titles like "Ctrl+Alt+Delete" wrap at natural points.
   const parts = title.split(/(?<=[+/&])/);
   return (
     <div

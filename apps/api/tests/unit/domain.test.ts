@@ -51,8 +51,8 @@ describe('royalty calendar', () => {
     expect(isBelowPayoutThreshold(pending.get('A')!)).toBe(false);
     expect(isBelowPayoutThreshold(pending.get('B')!)).toBe(true);
     const book = { royaltyPending: 600, lastPayoutDate: null, publicationDate: d('2024-01-01') };
-    expect(isRoyaltyOverdue(book, d('2026-10-17'))).toBe(false); // this book alone is below the minimum
-    expect(isRoyaltyOverdue(book, d('2026-10-17'), 1200)).toBe(true); // but the account is payable
+    expect(isRoyaltyOverdue(book, d('2026-10-17'))).toBe(false);
+    expect(isRoyaltyOverdue(book, d('2026-10-17'), 1200)).toBe(true);
   });
 
   it('marks payable balances with no payout for two cycles as overdue', () => {

@@ -191,7 +191,7 @@ function HelpPanel() {
         <ol className="mt-4 space-y-4">
           {NEXT_STEPS.map(([title, body], i) => (
             <li key={title} className="flex gap-3">
-              <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-brand-900 text-xs font-semibold text-white">{i + 1}</span>
+              <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-brand-700 text-xs font-semibold text-white">{i + 1}</span>
               <span className="text-sm">
                 <span className="block font-medium text-slate-800">{title}</span>
                 <span className="text-slate-500">{body}</span>
@@ -200,7 +200,7 @@ function HelpPanel() {
           ))}
         </ol>
       </Card>
-      <div className="rounded-2xl bg-gold-100/60 p-6 ring-1 ring-gold-100">
+      <div className="rounded-lg bg-gold-100/60 p-6 ring-1 ring-gold-100">
         <h2 className="text-lg font-semibold text-slate-900">For a faster answer</h2>
         <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm text-slate-600">
           <li>Pick the book the question is about.</li>

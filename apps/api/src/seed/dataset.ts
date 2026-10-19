@@ -36,8 +36,6 @@ export const datasetAuthorSchema = z.object({
 export const datasetSchema = z.object({ authors: z.array(datasetAuthorSchema) });
 
 export type Dataset = z.infer<typeof datasetSchema>;
-export type DatasetBook = z.infer<typeof datasetBookSchema>;
-
 const here = path.dirname(fileURLToPath(import.meta.url));
 export const DEFAULT_DATASET_PATH = path.resolve(here, '../../../../data/bookleaf_sample_data.json');
 

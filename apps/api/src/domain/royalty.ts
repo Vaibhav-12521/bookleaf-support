@@ -16,7 +16,6 @@ export function previousQuarterEnd(date: Date): Date {
 export function nextPayoutSchedule(today: Date): { quarterEndDate: Date; nextPayoutDate: Date } {
   const lastEnded = previousQuarterEnd(today);
   const lastWindowClose = new Date(lastEnded.getTime() + PAYOUT_WINDOW_DAYS * DAY_MS);
-  // Compare calendar days: the payout date stays "next" for the whole of that day.
   if (toIsoDate(today) <= toIsoDate(lastWindowClose)) {
     return { quarterEndDate: lastEnded, nextPayoutDate: lastWindowClose };
   }
@@ -27,8 +26,6 @@ export function nextPayoutSchedule(today: Date): { quarterEndDate: Date; nextPay
   };
 }
 
-// The ₹1,000 minimum applies to the author's accumulated pending royalties across
-// all their books (payouts are one bank transfer per author), not to each book.
 export function isBelowPayoutThreshold(accountPending: number): boolean {
   return accountPending > 0 && accountPending < PAYOUT_THRESHOLD_INR;
 }

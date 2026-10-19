@@ -43,16 +43,14 @@ export function LoginPage() {
 
   return (
     <div className="grid min-h-screen lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
-      <section className="relative hidden overflow-hidden bg-brand-950 px-12 py-12 text-white lg:flex lg:flex-col xl:px-16">
-        <div aria-hidden className="absolute -top-32 -right-24 size-[28rem] rounded-full bg-leaf-500/15 blur-3xl" />
-        <div aria-hidden className="absolute -bottom-40 -left-24 size-[30rem] rounded-full bg-brand-500/25 blur-3xl" />
+      <section className="relative hidden overflow-hidden bg-brand-700 px-12 py-12 text-white lg:flex lg:flex-col xl:px-16">
         <div className="relative">
           <Logo tone="light" />
         </div>
         <div className="relative my-auto max-w-xl py-12">
-          <p className="mb-4 text-xs font-semibold tracking-[0.18em] text-leaf-300 uppercase">Author Support &amp; Communication Portal</p>
+          <p className="mb-4 text-xs font-semibold tracking-[0.18em] text-brand-200 uppercase">Author Support &amp; Communication Portal</p>
           <p className="font-display text-4xl leading-tight font-medium xl:text-5xl">
-            Every author question, answered <span className="text-leaf-300 italic">well</span>, and on time.
+            Every author question, answered <span className="text-brand-200">well</span>, and on time.
           </p>
           <ul className="mt-10 space-y-5 text-sm text-brand-100/85">
             {[
@@ -90,7 +88,7 @@ export function LoginPage() {
           <div className="mb-8 lg:hidden">
             <Logo />
           </div>
-          <h1 className="text-3xl font-semibold text-slate-900 sm:text-4xl">Sign in</h1>
+          <h1 className="text-3xl font-semibold text-brand-700 sm:text-4xl">Sign in</h1>
           <p className="mt-2 text-sm text-slate-500">Authors and BookLeaf team members use the same sign-in.</p>
           <Card className="mt-8 p-6 sm:p-8">
             <form className="space-y-5" onSubmit={submit} noValidate>

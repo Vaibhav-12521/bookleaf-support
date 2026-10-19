@@ -72,7 +72,7 @@ Assumptions, trade-offs, limitations and next steps are in **[NOTES.md](NOTES.md
 | Layer | Choice | Why |
 |---|---|---|
 | Frontend | React 18, Vite, TypeScript, Tailwind CSS 4, TanStack Query, React Router | TanStack Query handles caching and loading/error states, and realtime events just invalidate queries. |
-| Design | Editorial theme: Fraunces (headings) + Inter (UI), self-hosted via Fontsource; warm paper-and-ink palette on the BookLeaf navy and green | Self-hosted fonts work under the strict Content-Security-Policy (no third-party font requests). Layout is responsive from 360 px phones to wide monitors: a sidebar from 1024 px, multi-column pages, and generated book covers. |
+| Design | IBM Plex Sans (UI and headings) + IBM Plex Mono (references, ISBNs), self-hosted via Fontsource; palette taken from the BookLeaf assignment document (steel blue #1b4f72, accent #2e86c1, pale blue and yellow callouts) | Self-hosted fonts work under the strict Content-Security-Policy (no third-party font requests). Layout is responsive from 360 px phones to wide monitors: a sidebar from 1024 px, multi-column pages, and generated book covers. |
 | Backend | Node 22, Express 5, TypeScript | Explicit middleware chain (auth, role, validation, handler). Express 5 forwards async errors natively. |
 | Database | PostgreSQL + Prisma 6 | Relational data (author → books → tickets → messages), typed queries, migrations, parameterised SQL. |
 | Validation | Zod 4, **shared** between API and web | One schema drives server validation, form validation, TypeScript types *and* the OpenAPI spec. |
@@ -188,7 +188,7 @@ Every model call, successful or not, is recorded in `AiEvent` with tokens, cache
 ### Model choice
 **Groq + `openai/gpt-oss-120b`** (configurable via `AI_PROVIDER` / `AI_MODEL`):
 - **Strict structured outputs:** Groq enforces a JSON schema on gpt-oss models, so classification always comes back as valid `{ category, priority, confidence, reasoning }`. The schema is generated from the same Zod schema, and the result is re-validated before it's trusted.
-- **Quality for the job:** a 120B open-weight reasoning model is more than enough for short classification and 100–200 word grounded emails. `reasoning_effort: low` keeps it fast and cheap.
+- **Quality for the job:** a 120B open-weight reasoning model is more than enough for short classification and 100 to 200 word grounded emails. `reasoning_effort: low` keeps it fast and cheap.
 - **Speed:** Groq's inference is very fast, which matters because an admin waits for the draft.
 - **Cost:** $0.15 / $0.60 per million tokens, automatic prefix caching at 50% off, and a free developer tier, which keeps a public demo cheap to run.
 - **No lock-in:** all model code sits behind `LlmProvider`. An Anthropic provider (Claude Haiku 5.5, the option the brief suggests) is included and selected with `AI_PROVIDER=anthropic`; tests use an injected fake.

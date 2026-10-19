@@ -13,8 +13,6 @@ import { recordAiEvent } from './usage';
 import { ticketReference } from '../modules/tickets/ticket.mapper';
 
 export async function getDraft(ticketId: string, options: { regenerate?: boolean } = {}): Promise<DraftDTO> {
-  // A draft is "as of" the moment its context was read, not when generation finished:
-  // a message that arrives while the model is writing must make the draft stale.
   const contextReadAt = new Date();
   const ticket = await loadTicketForAi(ticketId);
   if (!ticket) throw notFound('Ticket');

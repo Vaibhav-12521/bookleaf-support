@@ -7,8 +7,6 @@ import { useSession } from '../hooks/useSession';
 import { homeFor } from '../lib/routes';
 import { Spinner } from './ui';
 
-// One-click access to the seeded demo accounts for reviewers. Set VITE_DEMO_MODE=false
-// at build time to remove every demo shortcut from a real deployment.
 export const DEMO_ENABLED = import.meta.env.VITE_DEMO_MODE !== 'false';
 
 interface DemoAccount {
@@ -48,7 +46,6 @@ function useDemoSignIn(onDone: () => void) {
   return { signIn, pending, error };
 }
 
-/** Close on Escape or a click outside `ref`, returning focus to the trigger. */
 function useDismiss(open: boolean, close: () => void, ref: RefObject<HTMLElement | null>, trigger: RefObject<HTMLButtonElement | null>) {
   useEffect(() => {
     if (!open) return;
@@ -86,7 +83,7 @@ function AccountMenu({
   useEffect(() => first.current?.focus(), []);
 
   return (
-    <div id={id} role="menu" aria-label="Demo accounts" className={clsx('rounded-xl border border-slate-200 bg-white p-2 shadow-lg', className)}>
+    <div id={id} role="menu" aria-label="Demo accounts" className={clsx('rounded-lg border border-slate-200 bg-white p-2 shadow-lg', className)}>
       <p className="px-2 pt-1 pb-2 text-xs font-semibold tracking-wide text-slate-500 uppercase">Demo accounts</p>
       {DEMO_ACCOUNTS.map((a, i) => {
         const current = a.email === currentEmail;
@@ -131,7 +128,6 @@ function AccountMenu({
   );
 }
 
-/** Floating "Try the demo" button for the login page. */
 export function DemoLauncher() {
   const [open, setOpen] = useState(false);
   const root = useRef<HTMLDivElement>(null);
@@ -160,7 +156,6 @@ export function DemoLauncher() {
   );
 }
 
-/** Header control for jumping between demo accounts without signing out. */
 export function AccountSwitcher() {
   const { user } = useSession();
   const [open, setOpen] = useState(false);

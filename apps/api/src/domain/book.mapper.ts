@@ -3,7 +3,6 @@ import type { BookDTO, RoyaltySummary } from '@bookleaf/shared';
 import { isPublished, parseProductionStage } from './production';
 import { isBelowPayoutThreshold, nextPayoutSchedule, toIsoDate } from './royalty';
 
-/** `accountPending` is the author's total pending royalty, which decides the payout threshold. */
 export function toBookDTO(book: Book, accountPending: number): BookDTO {
   return {
     id: book.id,

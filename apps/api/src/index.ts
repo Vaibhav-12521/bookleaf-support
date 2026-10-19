@@ -15,7 +15,9 @@ const server = app.listen(env.PORT, () => {
       ? `enabled (${env.AI_PROVIDER}: ${env.AI_MODEL})`
       : `disabled: no API key for ${env.AI_PROVIDER}, using rules + templates`,
   });
-  void resumePendingTriage();
+  resumePendingTriage().catch((err: unknown) =>
+    logger.error('Could not resume pending triage', { error: err instanceof Error ? err.message.trim().split('\n').pop() : String(err) }),
+  );
 });
 
 async function shutdown(signal: string) {

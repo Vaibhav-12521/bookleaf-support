@@ -5,13 +5,13 @@ import { errorMessage } from '../api/client';
 type ButtonVariant = 'primary' | 'secondary' | 'ghost';
 
 const BUTTON_STYLES: Record<ButtonVariant, string> = {
-  primary: 'bg-brand-900 text-white shadow-sm hover:bg-brand-800 disabled:bg-brand-900/45',
+  primary: 'bg-brand-700 text-white shadow-sm hover:bg-brand-800 disabled:bg-brand-700/45',
   secondary: 'bg-white text-slate-700 ring-1 ring-slate-300 hover:bg-slate-50 disabled:text-slate-400',
   ghost: 'text-slate-600 hover:bg-slate-100 disabled:text-slate-400',
 };
 
 export const primaryLinkClass =
-  'inline-flex items-center gap-2 rounded-lg bg-brand-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-brand-800';
+  'inline-flex items-center gap-2 rounded-lg bg-brand-700 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-brand-800';
 
 export function Button({
   variant = 'primary',
@@ -50,7 +50,7 @@ export function Spinner({ className }: { className?: string }) {
 }
 
 export function Card({ className, children }: { className?: string; children: ReactNode }) {
-  return <div className={clsx('rounded-2xl border border-slate-200/80 bg-white shadow-[0_1px_2px_rgb(27_26_22/0.04),0_8px_24px_-12px_rgb(27_26_22/0.08)]', className)}>{children}</div>;
+  return <div className={clsx('rounded-lg border border-slate-200 bg-white shadow-sm', className)}>{children}</div>;
 }
 
 export function PageHeader({
@@ -65,10 +65,10 @@ export function PageHeader({
   eyebrow?: string;
 }) {
   return (
-    <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+    <div className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b-2 border-brand-700 pb-4">
       <div className="max-w-3xl">
-        {eyebrow && <p className="mb-2 text-xs font-semibold tracking-[0.16em] text-leaf-600 uppercase">{eyebrow}</p>}
-        <h1 className="text-3xl font-semibold text-slate-900 sm:text-4xl">{title}</h1>
+        {eyebrow && <p className="mb-2 text-xs font-semibold tracking-[0.14em] text-brand-500 uppercase">{eyebrow}</p>}
+        <h1 className="text-3xl font-semibold text-brand-700 sm:text-4xl">{title}</h1>
         {subtitle && <p className="mt-2 text-sm text-slate-500 sm:text-base">{subtitle}</p>}
       </div>
       {actions}

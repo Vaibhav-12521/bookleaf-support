@@ -12,7 +12,6 @@ export class FakeProvider implements LlmProvider {
       structured?: unknown;
       text?: string;
       failWith?: AiErrorCode;
-      /** Simulates a slow model so tests can interleave other requests. */
       delayMs?: number;
     },
   ) {}

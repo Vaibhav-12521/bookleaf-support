@@ -76,9 +76,8 @@ function RoyaltyOverview({ summary }: { summary: RoyaltySummary }) {
           roll over to the next quarter.
         </p>
       </Card>
-      <div className="relative overflow-hidden rounded-2xl bg-brand-950 p-6 text-white sm:p-8">
-        <div aria-hidden className="absolute -top-16 -right-16 size-48 rounded-full bg-leaf-500/20 blur-2xl" />
-        <p className="relative text-xs font-semibold tracking-[0.16em] text-leaf-300 uppercase">Next payout</p>
+      <div className="relative overflow-hidden rounded-lg bg-brand-700 p-6 text-white sm:p-8">
+        <p className="relative text-xs font-semibold tracking-[0.16em] text-brand-200 uppercase">Next payout</p>
         <p className="relative mt-3 font-display text-3xl font-semibold">{formatDate(summary.nextPayoutDate)}</p>
         <p className="relative mt-1 text-sm text-brand-100/80">{days === 0 ? 'Payout window closes today' : `in ${days} day${days === 1 ? '' : 's'}`}</p>
         <div className="relative mt-6 flex items-end justify-between border-t border-white/10 pt-4">
@@ -117,7 +116,7 @@ function BookCard({ book }: { book: BookDTO }) {
 
       <div className="mx-5 mb-5 sm:mx-6">
         {book.isPublished ? (
-          <div className="rounded-xl bg-slate-50 p-4 ring-1 ring-slate-100">
+          <div className="rounded-lg bg-slate-50 p-4 ring-1 ring-slate-100">
             <dl className="grid grid-cols-3 gap-2 text-sm">
               <Detail label="Earned" value={formatInr(book.royalty.earned)} />
               <Detail label="Paid" value={formatInr(book.royalty.paid)} />
@@ -138,7 +137,7 @@ function BookCard({ book }: { book: BookDTO }) {
             )}
           </div>
         ) : (
-          <div className="rounded-xl bg-gold-100/50 p-4 ring-1 ring-gold-100">
+          <div className="rounded-lg bg-gold-100/50 p-4 ring-1 ring-gold-100">
             <ProductionTracker stage={book.productionStage} />
             <p className="mt-2 text-xs text-slate-500">Sales and royalties will appear here once your book is live.</p>
           </div>

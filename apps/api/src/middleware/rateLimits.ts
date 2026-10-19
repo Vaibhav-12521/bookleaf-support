@@ -27,8 +27,6 @@ export const ticketCreateLimiter = rateLimit({
   message: message('You have raised a lot of tickets in the last hour. Please wait before raising another.'),
 });
 
-// Opening a ticket reads its draft, which is usually served from cache at no AI cost,
-// so reads get an abuse-only ceiling; generating work (regenerate, re-triage) keeps the tight one.
 export const draftReadLimiter = rateLimit({
   windowMs: 10 * 60 * 1000,
   limit: 300,

@@ -61,7 +61,7 @@ export function AppShell() {
 
   return (
     <div className="min-h-screen lg:grid lg:grid-cols-[16rem_1fr]">
-      <div className="hidden bg-brand-950 lg:block">
+      <div className="hidden bg-brand-800 lg:block">
         <div className="sticky top-0 flex h-screen flex-col">
           <div className="px-6 py-6">
             <Logo tone="light" />
@@ -78,7 +78,7 @@ export function AppShell() {
                 className={({ isActive }) =>
                   clsx(
                     'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
-                    isActive ? 'bg-white/10 text-white shadow-[inset_3px_0_0_var(--color-leaf-500)]' : 'text-brand-100/80 hover:bg-white/5 hover:text-white',
+                    isActive ? 'bg-white/10 text-white' : 'text-brand-100/80 hover:bg-white/5 hover:text-white',
                   )
                 }
               >
@@ -88,7 +88,7 @@ export function AppShell() {
             ))}
           </nav>
           <div className="mt-auto p-4">
-            <div className="rounded-xl bg-white/5 p-4 text-xs leading-relaxed text-brand-100/80 ring-1 ring-white/10">
+            <div className="rounded-lg bg-white/5 p-4 text-xs leading-relaxed text-brand-100/80 ring-1 ring-white/10">
               <p className="font-display text-sm text-white">{user.role === 'ADMIN' ? 'Reply within 48 hours' : 'We reply within 48 hours'}</p>
               <p className="mt-1">
                 {user.role === 'ADMIN'
@@ -115,7 +115,7 @@ export function AppShell() {
                   className={({ isActive }) =>
                     clsx(
                       'rounded-full px-3 py-1.5 text-sm font-medium whitespace-nowrap',
-                      isActive ? 'bg-brand-900 text-white' : 'text-slate-600 hover:bg-slate-100',
+                      isActive ? 'bg-brand-700 text-white' : 'text-slate-600 hover:bg-slate-100',
                     )
                   }
                 >
@@ -126,7 +126,7 @@ export function AppShell() {
             <div className="ml-auto flex h-14 items-center gap-2 sm:h-16 sm:gap-3">
               <LiveIndicator />
               <div className="hidden items-center gap-2.5 lg:flex">
-                <span aria-hidden className="flex size-9 items-center justify-center rounded-full bg-brand-900 text-xs font-semibold text-white">
+                <span aria-hidden className="flex size-9 items-center justify-center rounded-full bg-brand-700 text-xs font-semibold text-white">
                   {initials}
                 </span>
                 <div className="leading-tight">

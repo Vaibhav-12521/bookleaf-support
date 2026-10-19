@@ -35,8 +35,8 @@ export function TicketDetailPage() {
       {justCreated && <Banner tone="success">Thanks, your ticket {ticket.reference} has been submitted. You'll see our reply here as soon as it's sent.</Banner>}
 
       <div>
-        <p className="mb-2 text-xs font-semibold tracking-[0.16em] text-leaf-600 uppercase">{ticket.reference}</p>
-        <h1 className="text-2xl font-semibold text-slate-900 sm:text-3xl">{ticket.subject}</h1>
+        <p className="mb-2 text-xs font-semibold tracking-[0.14em] text-brand-500 uppercase">{ticket.reference}</p>
+        <h1 className="text-2xl font-semibold text-brand-700 sm:text-3xl">{ticket.subject}</h1>
       </div>
 
       <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_20rem] 2xl:grid-cols-[minmax(0,1fr)_24rem]">

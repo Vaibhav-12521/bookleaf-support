@@ -38,7 +38,7 @@ export function AdminTicketPage() {
       </Link>
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-900 sm:text-3xl">{ticket.subject}</h1>
+          <h1 className="text-2xl font-semibold text-brand-700 sm:text-3xl">{ticket.subject}</h1>
           <p className="mt-1 text-sm text-slate-500">
             {ticket.reference} · {ticket.author.name} · {ticket.book?.title ?? 'General / Account Level'} · opened {formatDateTime(ticket.createdAt)}
           </p>

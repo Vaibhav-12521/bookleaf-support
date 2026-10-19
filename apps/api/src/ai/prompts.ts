@@ -16,8 +16,6 @@ export const triageOutputSchema = z.object({
   confidence: z.number().describe('0 to 1: how sure you are about the category'),
   reasoning: z.string().describe('One short sentence for the support agent explaining the priority'),
 });
-export type TriageOutput = z.infer<typeof triageOutputSchema>;
-
 const TRIAGE_INSTRUCTIONS = `You triage incoming author support tickets for BookLeaf Publishing, a self-publishing company in India and the US. Your output decides which queue a ticket lands in and how fast the operations team picks it up.
 
 ${KB_COMPANY}

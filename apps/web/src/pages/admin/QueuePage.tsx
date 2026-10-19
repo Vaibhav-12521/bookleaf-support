@@ -144,7 +144,7 @@ function OverviewStrip({ overview, onFilter }: { overview: TicketOverviewDTO; on
     { label: 'Unassigned', value: overview.unassigned, tone: 'text-slate-900', onClick: () => onFilter({ assignee: 'unassigned' }) },
     {
       label: 'Oldest unresolved',
-      value: overview.oldestUnresolvedAt ? timeAgo(overview.oldestUnresolvedAt).replace(' ago', '') : '–',
+      value: overview.oldestUnresolvedAt ? timeAgo(overview.oldestUnresolvedAt).replace(' ago', '') : 'None',
       tone: oldestHours > SLA_HOURS ? 'text-red-600' : 'text-slate-900',
       onClick: () => onFilter({ sort: 'oldest' }),
     },
@@ -157,13 +157,13 @@ function OverviewStrip({ overview, onFilter }: { overview: TicketOverviewDTO; on
           type="button"
           disabled={!t.onClick}
           onClick={t.onClick}
-          className="rounded-xl border border-slate-200 bg-white p-3 text-left shadow-sm enabled:hover:border-brand-200 disabled:cursor-default"
+          className="rounded-lg border border-slate-200 bg-white p-3 text-left shadow-sm enabled:hover:border-brand-200 disabled:cursor-default"
         >
           <p className="text-xs text-slate-500">{t.label}</p>
           <p className={clsx('mt-1 font-display text-2xl font-semibold tabular-nums', t.tone)}>{t.value}</p>
         </button>
       ))}
-      <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm" title="AI calls logged since launch">
+      <div className="rounded-lg border border-slate-200 bg-white p-3 shadow-sm" title="AI calls logged since launch">
         <p className="text-xs text-slate-500">AI usage</p>
         <p className="mt-1 text-sm font-semibold text-slate-900">
           {overview.ai.calls} calls · ${overview.ai.estimatedCostUsd.toFixed(3)}
@@ -300,7 +300,7 @@ function TicketCard({ ticket: t }: { ticket: TicketSummaryDTO }) {
   return (
     <Link
       to={`/admin/tickets/${t.id}`}
-      className={clsx('block rounded-xl border bg-white p-4 shadow-sm', critical ? 'border-red-200 bg-red-50/60' : 'border-slate-200')}
+      className={clsx('block rounded-lg border bg-white p-4 shadow-sm', critical ? 'border-red-200 bg-red-50/60' : 'border-slate-200')}
     >
       <div className="flex items-center justify-between gap-2">
         <PriorityBadge priority={t.priority} />
